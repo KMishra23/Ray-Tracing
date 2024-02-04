@@ -9,10 +9,6 @@
 using std::shared_ptr;
 using std::make_shared;
 
-//this is some generic code for storing a bunch of (ray)hittable objects efficiently. I didnt bother to understand how this code works.
-//this code can add objects to the list of hittable objects and iteratively check if any of these objects was hit.
-//the exact techinicalities of how shared_ptr works is explained in the website.
-
 class hittable_list : public hittable {
   public:
     std::vector<shared_ptr<hittable>> objects;
@@ -26,7 +22,7 @@ class hittable_list : public hittable {
         objects.push_back(object);
     }
 
-    bool hit(const ray& r, interval ray_t, hit_record& rec) const {
+    bool hit(const ray& r, interval ray_t, hit_record& rec) const override{
         hit_record temp_rec;
         bool hit_anything = false;
         auto closest_so_far = ray_t.max;

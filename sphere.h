@@ -8,7 +8,7 @@ class sphere : public hittable {
   public:
     sphere(point3 _center, double _radius) : center(_center), radius(_radius) {}
 
-    bool hit(const ray& r, interval ray_t, hit_record& rec) const {
+    bool hit(const ray& r, interval ray_t, hit_record& rec) const override {
         vec3 oc = r.origin() - center;
         auto a = r.direction().length_squared();
         auto half_b = dot(oc, r.direction());
